@@ -1,0 +1,2 @@
+Explicit opt-in to JJ2096 TerraBlender surface compatibility.
+This marker does not modify world height, terrain, or biome selection.

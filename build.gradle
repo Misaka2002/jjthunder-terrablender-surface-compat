@@ -1,0 +1,52 @@
+plugins {
+    id 'java-library'
+    id 'net.neoforged.moddev' version '2.0.147'
+}
+
+version = mod_version
+group = 'io.github.misaka2002'
+base { archivesName = 'jj2096-surface-compat' }
+java {
+    toolchain.languageVersion = JavaLanguageVersion.of(21)
+    withSourcesJar()
+}
+repositories {
+    mavenCentral()
+    maven {
+        // TerraBlender's upstream Gradle setup publishes this coordinate here.
+        url = 'https://maven.minecraftforge.net'
+        content { includeGroup 'com.github.glitchfiend' }
+    }
+}
+neoForge {
+    version = '21.1.251'
+    mods {
+        jj2096_surface_compat { sourceSet(sourceSets.main) }
+    }
+}
+dependencies {
+    implementation 'com.github.glitchfiend:TerraBlender-neoforge:1.21.1-4.1.0.8'
+    testImplementation platform('org.junit:junit-bom:5.11.4')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+tasks.named('processResources') {
+    inputs.property 'version', project.version
+    filesMatching('META-INF/neoforge.mods.toml') { expand version: project.version }
+}
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release = 21
+}
+tasks.withType(AbstractArchiveTask).configureEach {
+    preserveFileTimestamps = false
+    reproducibleFileOrder = true
+}
+tasks.withType(Jar).configureEach { from('LICENSE') }
+tasks.named('test') { useJUnitPlatform() }
+tasks.register('activationPack', Zip) {
+    from('activation-pack') { include 'pack.mcmeta', 'data/**' }
+    archiveFileName = "jj2096-surface-compat-activation-${project.version}.zip"
+    destinationDirectory = layout.buildDirectory.dir('distributions')
+}
+tasks.named('build') { dependsOn 'activationPack' }
