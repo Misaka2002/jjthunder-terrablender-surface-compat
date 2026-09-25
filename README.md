@@ -29,6 +29,10 @@ The experimental compatibility target is JJThunder To The Max 0.6.0 for 1.21–1
 
 Other Minecraft/loaders, TerraBlender versions, terrain packs, or arbitrary custom dimensions are not claimed to work. The affected TerraBlender defaults are category-wide, so other dimensions using the same category need their own compatibility review.
 
+### DH and SSRD updates
+
+DH 3.3.2 and SSRD 1.8.7 are optional rendering mods for this project. A [source and binary audit](docs/DH-SSRD-3.3.2-1.8.7-audit.md) found no surface compatibility code or dependency change required for their update. The maintainer reports that the updated combination works in the local JJ2096 instance. This is a user-reported check of that instance, not an exhaustive rendering test or a test of this public beta JAR.
+
 ## Install
 
 1. Back up your instance and use a disposable new world first. Install the separately obtained, matching NeoForge and TerraBlender versions, your height/world-generation data packs, and any intended biome mods.

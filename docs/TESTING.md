@@ -81,6 +81,15 @@ again when changing world-generation packs.
 - Exhaustive biome/structure coverage, aircraft physics, distant LOD, shaders,
   or long-duration client gameplay.
 
+The [DH 3.3.2 / SSRD 1.8.7 audit](DH-SSRD-3.3.2-1.8.7-audit.md) records why
+their rendering updates do not call for a change in this mod's Java code.
+On 2026-09-25, the maintainer reported that the updated mod combination works
+in the local JJ2096 instance. The inspected instance contained the earlier
+private surface patch 1.1.0; its retained log predates the DH/SSRD update, and
+no new log or screenshots were reviewed for this report. Treat this as a
+maintainer-reported integration check, not a public-beta binary test or proof
+of exhaustive LOD, shader, and distant sub-level behavior.
+
 If reporting a regression, supply exact versions, enabled pack order, marker
 presence, noise ranges, and a minimal reproduction. Logs should be sanitized;
 do not submit account tokens or an entire private instance.
